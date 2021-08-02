@@ -3,6 +3,7 @@ from flask_wtf.csrf import CSRFProtect
 from topsecret.migrations import create_db, migrate
 from decouple import config
 from wtforms.csrf.core import CSRF
+from topsecret.utils.account import create_account
 
 def create_app():
     app = Flask(__name__, static_folder="static", template_folder="templates")
@@ -23,12 +24,16 @@ def create_app():
     migrate.init_app(app, db)
 
     from topsecret.routes.main import main, page_not_found
+    from topsecret.routes.page import page
 
     with app.app_context():
         db.drop_all() # clear db
         db.create_all() # create db
+        create_account()
 
-    app.register_blueprint(main)
+
     app.register_error_handler(404, page_not_found)
+    app.register_blueprint(main)
+    app.register_blueprint(page)
 
     return app

@@ -13,19 +13,6 @@ services:
     networks:
       hcamp23_chall02:
         ipv4_address: 172.9.0.2
-
-  db:
-    container_name: file_manager_db
-    image: mysql:5.7
-    environment:
-      MYSQL_ROOT_PASSWORD: 'hcamp23@@file_manager!'
-      MYSQL_USER: 'chall02'
-      MYSQL_PASSWORD: 'hcamp23@@file_manager!'
-    ports:
-      - 3708:3708
-    networks:
-      hcamp23_chall02:
-        ipv4_address: 172.9.0.3
   
   app:
     container_name: file_manager_app

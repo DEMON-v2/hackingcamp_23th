@@ -10,6 +10,7 @@ def create_account():
     for item in data:
         result = Users(username=item['username'],
         password=sha512(item['password'].encode()).hexdigest(),
+        email=item['email'],
         create_time=datetime.now(),
         save_ip=str(item['ip']))
 

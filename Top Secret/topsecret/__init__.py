@@ -4,6 +4,7 @@ from topsecret.migrations import create_db, migrate
 from decouple import config
 from wtforms.csrf.core import CSRF
 from topsecret.utils.account import create_account
+from flask_mail import Mail
 
 def create_app():
     app = Flask(__name__, static_folder="static", template_folder="templates")

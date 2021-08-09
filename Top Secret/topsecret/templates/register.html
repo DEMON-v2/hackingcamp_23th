@@ -6,8 +6,8 @@
 {% block content %}
 <div id="wrapper">
     <div id="table">
-        <a class="active">Sign in</a>
-        <a href="/register" class="">Sign Up</a>
+        <a href="/" class="">Sign in</a>
+        <a class="active">Sign Up</a>
     </div>
     {% if err %}
         {{ err }}
@@ -25,11 +25,14 @@
                 <span id="showpwd" class="fa fa-eye-slash"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Sign in">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Sign up">
             </div>
         </form>
     <div class="hr"></div>
-    <a href="/forgot_password" id="froget-pass">Forgot Password?</a>
 </div>
 </div>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>

@@ -17,8 +17,6 @@ services:
   app:
     container_name: file_manager_app
     image: php:7.1-fpm
-    depends_on:
-      - db
     ports:
       - "9000:9000"
     volumes:

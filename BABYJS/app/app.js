@@ -9,20 +9,20 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
 app.get('/', function(req, res, next){
-    let result = '';
-    const code = req.query.code;
+    let msg = '';
+    const code = req.query.code + '';
 
-    if(code && code.length < 200){
+    if(code){
         try {
-            const result = vm.runInNewContext(code, {}, { timeout: 100 });
+            const result = vm.runInNewContext(`'use strict'; ${code}`, {}, { timeout: 100 });
         } catch(e) {
-            result = "err";
+            msg = "err";
         }
     } else {
-            result = "no code";
+            msg = "err";
     }
     
-    res.render("index", {"title": "Hello BABYJS", result});
+    res.render("index", {"title": "Hello BABYJS", msg});
 });
 
 module.exports = app;

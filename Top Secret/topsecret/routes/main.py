@@ -22,8 +22,8 @@ def index_page():
         return render_template("index.html")
 
     if request.method == "POST":
-        username = request.form.get('username')
-        password = request.form.get('password')
+        username = request.form.get('username').strip()
+        password = request.form.get('password').strip()
         hash_pw = sha512(password.encode()).hexdigest()
 
         result = Users.query.filter_by(username=username, password=hash_pw).first()
@@ -64,16 +64,3 @@ def register_page():
             return redirect(url_for("main.index_page"))
         else:
             return '<script>alert("Error"); history.go(-1); </script>'
-
-@main.route('/forgot_password', methods=["GET", "POST"])
-@main.route('/forgot_password/<token>', methods=["GET", "POST"])
-def forget_password():
-    if request.method == "GET":
-        return render_template("forgot_password.html")
-
-    if request.method == "POST":
-        username = request.form.get('username')
-        create_link = serialize(username)
-        result = Message('test', sender='hcamptopsecret23@gmail.com', recipients='stjhyeon@kakao.com')
-        result.body = "test"
-        current_app.mail.send(result)

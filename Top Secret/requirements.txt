@@ -5,3 +5,4 @@ flask_wtf
 cryptography
 sqlalchemy-utils
 python-decouple
+pymysql

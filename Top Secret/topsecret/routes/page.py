@@ -34,7 +34,7 @@ def myinfo_page():
                     chk_user.password = sha512(new_password.encode()).hexdigest()
                     db.session.commit()
                     session.clear()
-                    return '<script>alert("비밀번호 변경이 완료되었네요~"); location.href="/"; </script>'
+                    return '<script>alert("비밀번호 변경이 완료되었네요~"); location.href="page"; </script>'
             else:
                 return '<script>alert("입력한 비밀번호가 서로 다릅니다."); history.go(-1); </script>'
     else:

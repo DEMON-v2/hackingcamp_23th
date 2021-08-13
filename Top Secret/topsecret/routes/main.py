@@ -16,6 +16,9 @@ def page_not_found(e):
 
 @main.route('', methods=["GET","POST"])
 def index_page():
+    if "user" in session:
+        return redirect(url_for("page.main_page")
+
     if request.method == "GET":
         return render_template("index.html")
 
@@ -34,6 +37,9 @@ def index_page():
 
 @main.route('register', methods=["GET","POST"])
 def register_page():
+    if "user" in session:
+        return redirect(url_for("page.main_page")
+    
     if request.method == "GET":
         return render_template("register.html")
 

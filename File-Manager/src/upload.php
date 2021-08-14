@@ -6,7 +6,7 @@ if(!isset($_FILES['upload_file'])){
 
 $file = $_FILES['upload_file'];
 $filename = $file['name'];
-$ip = $_SERVER['REMOTE_ADDR'];
+$rand = hash('sha512', rand(1, 999999));
 $encrypt_path = hash('sha256', $ip);
 
 if(preg_match("/htaccess/i", $filename)){
@@ -20,15 +20,15 @@ if($ext != "jpg" && $ext != "jpeg" && $ext != "png" && $ext != "gif"){
     }
 }
 
-$create_path = "/var/www/html/uploads/{$encrypt_path}/";
+$create_path = "/var/www/html/uploads/{$rand}/";
 if(!file_exists($create_path)){
     mkdir($create_path, 0777, true);
 }
 
-$location = "/var/www/html/uploads/{$encrypt_path}/";
+$location = "/var/www/html/uploads/{$rand}/";
 
 if(move_uploaded_file($file['tmp_name'], $location . $file['name'])){
-    echo("<script>alert('Success! Your Upload Directory : uploads/$encrypt_path'); location.href='index.php'; </script>");
+    echo("<script>alert('Success! Your Upload Directory : uploads/$rand'); location.href='index.php'; </script>");
 }else{
     die("<script>alert('Failed'); history.go(-1); </script>");
 }

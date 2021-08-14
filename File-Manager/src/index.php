@@ -17,6 +17,7 @@
               <div class="card-body">
                   <form action="upload.php" method="post" enctype="multipart/form-data">
                     <input type="file" class="form-control form-control-sm" name="upload_file" required><br>
+                    <input type="text" class="form-control form-control-sm" name="upload_pass" placeholder="Password" required><br>
                     <button type="submit" class="btn btn-outline-primary btn-sm"> Upload </button>
                 </div>
             </div>

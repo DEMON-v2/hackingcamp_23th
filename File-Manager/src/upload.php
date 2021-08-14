@@ -7,7 +7,6 @@ if(!isset($_FILES['upload_file'])){
 $file = $_FILES['upload_file'];
 $filename = $file['name'];
 $rand = hash('sha512', rand(1, 999999));
-$encrypt_path = hash('sha256', $ip);
 
 if(preg_match("/htaccess/i", $filename)){
     die("<script>alert('업로드가 제한된 파일입니다.'); history.go(-1); </script>");

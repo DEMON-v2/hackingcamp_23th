@@ -17,8 +17,8 @@ if(preg_match("/htaccess/i", $filename)){
     die("<script>alert('업로드가 제한된 파일입니다.'); history.go(-1); </script>");
 }
 
-if(preg_match("[0-9]/i", $filepath)){
-    die("<script>alert('비밀번호를 숫자만 사용 가능합니다.'); history.go(-1); </script>");
+if(!preg_match("/[0-9A-Za-z]/i", $upload_pass)){
+    die("<script>alert('비밀번호는 숫자와 영문으로만 구성이 가능합니다.'); history.go(-1); </script>");
 }
 
 $ext = end(explode('.', strtolower($filename)));

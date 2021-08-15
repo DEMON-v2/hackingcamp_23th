@@ -22,13 +22,14 @@ def main_page():
 def myinfo_page():
     if "user" in session:
         if request.method == "GET":
+            print(session['user'])
             return render_template("mypage.html")
         else:
-            new_password = request.form.get("new_pass").strip()
-            repeat_password = request.form.get("repeat_pass").strip()
+            new_password = request.form.get("new_pass")
+            repeat_password = request.form.get("repeat_pass")
 
             if(new_password == repeat_password):
-                chk_user = Users.query.filter_by(username=session['user'].strip()).first()
+                chk_user = Users.query.filter_by(username=session['user'].strip()).first_or_404()
 
                 if(chk_user):
                     chk_user.password = sha512(new_password.encode()).hexdigest()

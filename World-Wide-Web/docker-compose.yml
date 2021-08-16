@@ -20,6 +20,8 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: "www@web@service!hcamp23@root!"
       MYSQL_DATABASE: "wwwweb"
+    volumes:
+      - "./env/:/docker-entrypoint-initdb.d/"
     ports:
       - 3910:3910
     networks:
